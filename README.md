@@ -1,4 +1,4 @@
-# Predictive-and-Adaptive-Deep-Coding-for-Wireless-Image-Transmission-in-Semantic-Communication
+# PADC: Predictive-and-Adaptive-Deep-Coding-for-Wireless-Image-Transmission-in-Semantic-Communication
 Pytorch code for IEEE TWC paper "Predictive and Adaptive Deep Coding for Wireless Image Transmission in Semantic Communication"
 
 For more details, please read to the following paper: 
