@@ -3,8 +3,6 @@ import os
 import torch
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-# import PIL
-# import dill
 
 
 def train_data_loader(batch_size = 64, imgz = 128, workers = 0, pin_memory = True):
@@ -14,6 +12,8 @@ def train_data_loader(batch_size = 64, imgz = 128, workers = 0, pin_memory = Tru
         data_dir,
         transforms.Compose([
             transforms.CenterCrop(imgz),
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomVerticalFlip(p=0.5),
             transforms.ToTensor(),
         ])
     )
