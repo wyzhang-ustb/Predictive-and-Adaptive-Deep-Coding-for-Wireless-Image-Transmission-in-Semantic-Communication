@@ -17,11 +17,11 @@ class conv_block(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
         super(conv_block, self).__init__()
         self.conv = conv(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
-        self.bn = nn.BatchNorm2d(out_channels)
+        self.gdn = nn.GDN(out_channels)
         self.prelu = nn.PReLU()
     def forward(self, x): 
         out = self.conv(x)
-        out = self.bn(out)
+        out = self.gdn(out)
         out = self.prelu(out)
         return out
 
@@ -29,12 +29,12 @@ class deconv_block(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1, output_padding = 0):
         super(deconv_block, self).__init__()
         self.deconv = deconv(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=padding,  output_padding = output_padding)
-        self.bn = nn.BatchNorm2d(out_channels)
+        self.gdn = nn.GDN(out_channels)
         self.prelu = nn.PReLU()
         self.sigmoid = nn.Sigmoid()
     def forward(self, x, activate_func='prelu'): 
         out = self.deconv(x)
-        out = self.bn(out)
+        out = self.gdn(out)
         if activate_func=='prelu':
             out = self.prelu(out)
         elif activate_func=='sigmoid':
